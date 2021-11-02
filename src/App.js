@@ -3,7 +3,7 @@ import { v4 as uuidv4, v4 } from "uuid";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import Filter from "./components/Filter/Filter";
-
+import s from "./App.module.css";
 class App extends Component {
   state = {
     contacts: [
@@ -38,9 +38,6 @@ class App extends Component {
     }));
   };
 
-  // formSubmitHandler = (data) => {
-  //   console.log(data);
-  // };
   handleFilterChange = (e) => {
     this.setState({
       filter: e.currentTarget.value,
@@ -54,18 +51,16 @@ class App extends Component {
     return filteredContacts;
   };
 
-  delateItem = (e) => {
-    console.log(
-      this.state.contacts
-        .map((item) => item.id)
-        .filter((id) => {
-          return id !== e.currentTarget.name;
-        })
-    );
+  delateItem = (id) => {
+    return this.setState((prevState) => {
+      console.log(prevState);
+      return {
+        contacts: prevState.contacts.filter((item) => item.id !== id),
+      };
+    });
   };
 
   render() {
-    // const contactsFiltered = this.filter();
     return (
       <div className="App">
         <h1>Phonebook</h1>
