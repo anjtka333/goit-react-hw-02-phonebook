@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { v4 as uuidv4, v4 } from "uuid";
-import s from "./ContactForm.module.css";
+import { v4 } from "uuid";
+import s from "./ContactForm.module.scss";
 import PropTypes from "prop-types";
 
-// import "./ContactForm.scss";
 class ContactForm extends Component {
   state = {
     name: "",
@@ -25,7 +24,7 @@ class ContactForm extends Component {
 
   handleOnSubmit = (e) => {
     e.preventDefault();
-    this.props.onSubmit(this.state); //props
+    this.props.onSubmit(this.state);
     this.reset();
   };
   render() {
@@ -41,6 +40,7 @@ class ContactForm extends Component {
           value={this.state.name}
           onChange={this.handleInputChange}
           id={this.nameInputId}
+          className={s.input}
         />
         <label htmlFor={this.phoneInputId}>Number </label>
         <input
@@ -52,6 +52,7 @@ class ContactForm extends Component {
           value={this.state.number}
           onChange={this.handleInputChange}
           id={this.phoneInputId}
+          className={s.input}
         />
         <button className={s.btn} type="submit">
           Add conttact

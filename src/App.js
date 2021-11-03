@@ -3,7 +3,8 @@ import { v4 as uuidv4, v4 } from "uuid";
 import ContactForm from "./components/ContactForm/ContactForm";
 import ContactList from "./components/ContactList/ContactList";
 import Filter from "./components/Filter/Filter";
-import s from "./App.module.css";
+import s from "./components/ContactForm/ContactForm.module.scss";
+
 class App extends Component {
   state = {
     contacts: [
@@ -20,8 +21,7 @@ class App extends Component {
 
     if (
       this.state.contacts.some((item) => {
-        console.log(item.name.includes(name));
-        return item.name.includes(name);
+        return item.name.toLowerCase().includes(name.toLowerCase());
       })
     ) {
       alert(`${name} is already in contacts`);
@@ -53,7 +53,6 @@ class App extends Component {
 
   delateItem = (id) => {
     return this.setState((prevState) => {
-      console.log(prevState);
       return {
         contacts: prevState.contacts.filter((item) => item.id !== id),
       };
@@ -66,7 +65,11 @@ class App extends Component {
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContact} />
         <h2>Contacts</h2>
-        <Filter value={this.state.filter} onChange={this.handleFilterChange} />
+        <Filter
+          value={this.state.filter}
+          onChange={this.handleFilterChange}
+          inputStyle={s.input}
+        />
         <ContactList contactsFiltered={this.filter} onClick={this.delateItem} />
       </div>
     );

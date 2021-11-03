@@ -4,10 +4,9 @@ import PropTypes from "prop-types";
 const ContactList = ({ contactsFiltered, onClick }) => {
   const filteredList = contactsFiltered();
   return (
-    <ul>
+    <ul className={s.ulStyle}>
       {filteredList.map((item) => {
         const delItem = () => onClick(item.id);
-        console.log(item.id);
         return (
           <li key={item.id}>
             {item.name} {item.number}
