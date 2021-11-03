@@ -1,4 +1,4 @@
-import s from "./ContactList.module.css";
+import s from "./ContactList.module.scss";
 import PropTypes from "prop-types";
 
 const ContactList = ({ contactsFiltered, onClick }) => {
